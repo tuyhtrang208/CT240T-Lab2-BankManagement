@@ -1,10 +1,11 @@
 package kkk;
 
-public class SavingAccount extends BankAccount
-	throws InsufficientBalanceException, InvalidAmountException;{
+public class SavingAccount extends BankAccount{
 	private double interestRate;
+	
 	public static final double MIN_BALANCE = 50000.0;
-	public SavingAccount(String accountNumber, String holderName, double balance, double interestRate) {
+	public SavingAccount(String accountNumber, String holderName, double balance, double interestRate) 
+			throws InsufficientBalanceException, InvalidAmountException {
 		super(accountNumber, holderName, balance);
 		if(balance <MIN_BALANCE) {
 			throw new InsufficientBalanceException("So du toi thieu cua tai khoan tiet kiem phai tu "+ MIN_BALANCE + " VND!!");
@@ -20,11 +21,11 @@ public class SavingAccount extends BankAccount
 	
 	@Override 
 	public void withdraw(double amount) throws InsufficientBalanceException, InvalidAmountException{
-		if(amout <=0) {
+		if(amount <=0) {
 			throw new InvalidAmountException("So tien can rut phai lon hon 0!");
 		}
 		if(getBalance() - amount <MIN_BALANCE) {
-			throws new InsufficientBalanceException("Khong the rut! So du sau khi rut khong duoc nho homn 50.000 VND");
+			throw new InsufficientBalanceException("Khong the rut! So du sau khi rut khong duoc nho hon 50.000 VND");
 		}
 		setBalance(getBalance()- amount);
 	}
